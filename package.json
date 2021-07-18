@@ -1,0 +1,32 @@
+{
+    "name": "assembly",
+    "displayName": "Better Assembler",
+    "description": "Language support, syntax highlighting, etc for assembly",
+    "version": "1.0.0",
+    "engines": {
+        "vscode": "^1.58.0"
+    },
+    "categories": [
+        "Programming Languages",
+        "Snippets"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "asm",
+            "aliases": ["assembly language", "asm"],
+            "extensions": [".asm", ".s"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "asm",
+            "scopeName": "source.asm",
+            "path": "./syntaxes/asm.tmLanguage.json"
+        }],
+        "snippets": [
+            {
+              "language": "asm",
+              "path": "./snippets.json"
+            }
+        ]
+    }
+}

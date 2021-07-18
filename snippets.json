@@ -1,0 +1,104 @@
+{
+	"asm main " : {
+		"prefix": "main",
+		"body": [
+			"section .text",
+			"global _start",
+			"_start:",
+			"    $0"
+		]
+	},
+
+	"hello world" : {
+		"prefix": "hello_world",
+		"body": [
+			"section .text",
+			"global _start",
+			"_start:",
+			"    mov edx, len",
+			"    mov ecx, msg",
+			"    mov ebx, 1",
+			"    mov eax, 4",
+			"    int 0x80",
+			"    ",
+			"    mov ebx, 0",
+			"    mov eax, 1",
+			"    int 0x80",
+			"section .data",
+			"msg db \"hello, world!\", 0xA",
+			"len equ $-msg"
+		]
+	},
+
+	"create macro" : {
+		"prefix": "macro",
+		"body" : [
+			"%macro ${1:name} ${2:num_of_params}",
+			"    $0",
+			"%endmacro"
+		]
+	},
+	
+	"data define byte" : {
+		"prefix": "ddb",
+		"body": "${name} db $0"
+	},
+	
+	"data define word" : {
+		"prefix": "ddw",
+		"body": "${name} dw $0"
+	},
+	
+	"data define double word" : {
+		"prefix": "ddww",
+		"body": "${name} dd $0"
+	},
+
+	"data define double word 2" : {
+		"prefix": "dddw",
+		"body": "${1:name} dd $0"
+	},
+
+	"data define Quad Word" : {
+		"prefix": "ddqw",
+		"body": "${1:name} dq $0"
+	},
+
+	"data define Ten byte" : {
+		"prefix": "dd10",
+		"body": "${1:name} dt $0"
+	},
+
+	"data define array" : {
+		"prefix" : "dda",
+		"body": [
+			"${1:name}:",
+			"   $0"
+		]
+	},
+
+	"calc length" : {
+		"prefix": "len",
+		"body": "len_${1:data} equ $-${1:data}$0"
+	},
+
+	"data section" : {
+		"prefix": ".data",
+		"body": "section .data\n$0"
+	},
+	"text section" : {
+		"prefix": ".text",
+		"body": "section .text\n    $0"
+	},
+	"bss section" : {
+		"prefix": ".bss",
+		"body": "section .bss\n$0"
+	},
+	"new subroute" : {
+		"prefix":"subroute",
+		"body": [
+			"${1:name}:",
+			"$0"
+		]
+	}
+}
